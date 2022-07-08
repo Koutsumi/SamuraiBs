@@ -1,0 +1,15 @@
+{
+  "name": "samuraibs-tests",
+  "version": "1.0.0",
+  "description": "Projeto de testes de aceitação e2e em cypress",
+  "main": "index.js",
+  "author": "Fernanda M",
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^10.3.0",
+    "pg": "^8.7.3"
+  },
+  "dependencies": {
+    "faker-br": "^0.4.1"
+  }
+}
