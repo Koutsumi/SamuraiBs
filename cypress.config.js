@@ -6,6 +6,7 @@ module.exports = defineConfig({
     baseUrl:'http://localhost:3000/',
     viewportWidth: 1440,
     viewportHeight: 900,
+    
     setupNodeEvents(on, config) {
       // implement node event listeners here
       
@@ -14,7 +15,7 @@ module.exports = defineConfig({
         user: 'viaxvayd',
         password: 'OdaE8N7YfGdVnHzjRmKk9um5O_kZRM4E',
         database: 'viaxvayd',
-        post: 5432
+        port: 5432
       })
       on('task', {
         removeUser(email){

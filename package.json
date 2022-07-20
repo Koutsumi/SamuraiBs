@@ -6,10 +6,11 @@
   "author": "Fernanda M",
   "license": "MIT",
   "devDependencies": {
-    "cypress": "^10.3.0",
     "pg": "^8.7.3"
   },
   "dependencies": {
-    "faker-br": "^0.4.1"
+    "cypress": "^10.3.1",
+    "faker-br": "^0.4.1",
+    "save-dev": "^0.0.1-security"
   }
 }
