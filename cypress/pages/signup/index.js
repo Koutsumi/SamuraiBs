@@ -23,7 +23,10 @@ class SignupPage {
         cy.contains(el.signupButton).click();
     }
 
-    
+    alertHaveText(expectedMessage){
+        cy.contains('.alert-error', expectedMessage)
+        .should('be.visible')
+    }
 
 }
 export default new SignupPage
