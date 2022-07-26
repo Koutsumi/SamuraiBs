@@ -1,10 +1,12 @@
 import {el} from './elements'
 import toast from '../../support/components/toast'
+import alert from '../../support/components/alert'
 
 class loginPage {
 
     constructor(){
         this.toast = toast
+        this.alert = alert
     }
 
     go(){

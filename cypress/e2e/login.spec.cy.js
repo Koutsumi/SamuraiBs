@@ -76,8 +76,26 @@ describe('Login', function () {
                 loginPage.form(user)
                 loginPage.submit()
                 const message = 'Informe um email válido'
-                loginPage.alertHaveText(message)
+                loginPage.alert.haveText(message)
             })
         })
     })
+
+    context("Quando não preencho nenhum dos campos", function() {
+        const alertMessages = [
+          'E-mail é obrigatório',
+          'Senha é obrigatória'
+        ]
+    
+        before(function () {
+          loginPage.go()
+          loginPage.submit()
+        })
+    
+        alertMessages.forEach(function(alert){
+          it('Deve exibir ' + alert.toLocaleLowerCase(), function(){
+            loginPage.alert.haveText(alert)
+          })
+        })
+      })
 })
