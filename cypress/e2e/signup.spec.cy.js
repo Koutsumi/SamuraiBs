@@ -41,7 +41,7 @@ describe("Cadastro", function () {
       is_provider: true,
     };
 
-    before(function () {
+    before(function() {
       cy.postUser(this.email_dup);
     });
 
