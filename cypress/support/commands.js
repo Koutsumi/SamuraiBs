@@ -47,3 +47,23 @@ Cypress.Commands.add('recoveryPass', function(email){
                 })
     })
 })
+
+Cypress.Commands.add('setProviderId', function(providerEmail) {
+    cy.request({
+        method:'GET',
+        url: 'http://localhost:3333/providers',
+        headers: {
+            authorization: 'Bearer ' + Cypress.env('apiToken')
+        }
+        }).then(function(response) {
+            expect(response.status).eq(200)
+            console.log(response.body)
+
+            const providerList = response.body
+            providerList.forEach(provider => {
+                if(provider.email === providerEmail){
+                    Cypress.env('providerId', provider.id)
+                }
+            });
+        })
+})

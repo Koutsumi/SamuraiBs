@@ -6,6 +6,7 @@
   "author": "Fernanda M",
   "license": "MIT",
   "devDependencies": {
+    "moment": "^2.29.4",
     "pg": "^8.7.3"
   },
   "dependencies": {
