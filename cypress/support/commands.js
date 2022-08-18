@@ -1,5 +1,6 @@
 import moment from 'moment'
 
+ 
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -25,6 +26,16 @@ import moment from 'moment'
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+import loginPage from '../pages/login'
+import dashPage from '../pages/dash'
+
+Cypress.Commands.add('uiLogin', function(user) {
+    loginPage.go()
+    loginPage.form(user)
+    loginPage.submit()
+    dashPage.header.userLoggedIn(user.name)
+})
 
 Cypress.Commands.add('postUser', function(user) {
     cy.task('removeUser', user.email)
@@ -79,7 +90,7 @@ Cypress.Commands.add('createAppointment', function(hour) {
 
     cy.log(now.getDate())
 
-    const date = moment(now).format('YYYY-MM-DD ' + hour + ':00')
+    const date = moment(now).format(`YYYY-MM-DD ${hour}:00`)
 
     const payload = {
         provider_id: Cypress.env('providerId'),
@@ -101,7 +112,7 @@ Cypress.Commands.add('createAppointment', function(hour) {
     })
 })
 
-Cypress.Commands.add('apiLogin',function(user){
+Cypress.Commands.add('apiLogin',function(user, setLStorage = false){
     const payload = {
         email: user.email,
         password: user.password
@@ -112,5 +123,15 @@ Cypress.Commands.add('apiLogin',function(user){
         // console.log(response.body.token)
         Cypress.env('apiToken',response.body.token)
         console.log(Cypress.env('apiToken'))
+
+        if(setLStorage){
+            const {token, user} = response.body
+
+            window.localStorage.setItem('@Samurai:token', token)
+            window.localStorage.setItem('@Samurai:user', JSON.stringify(user))
+        }
+
+       
     })
+    if(setLStorage) cy.visit('/dashboard')
 })
