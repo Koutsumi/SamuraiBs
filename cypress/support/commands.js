@@ -86,7 +86,7 @@ Cypress.Commands.add('createAppointment', function(hour) {
 
     now.setDate(now.getDate() + 1)
 
-    Cypress.env('appointmentDay', now.getDate())
+    Cypress.env('appointmentDate', now)
 
     cy.log(now.getDate())
 

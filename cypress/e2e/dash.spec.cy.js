@@ -7,7 +7,7 @@ describe('Dashboard', function() {
         before(function(){
             cy.postUser(provider)
             cy.postUser(custumer)
-            
+
             cy.apiLogin(custumer)
             cy.log('conseguimos pegar o token! ' + Cypress.env('apiToken'))
 
@@ -19,8 +19,8 @@ describe('Dashboard', function() {
             cy.apiLogin(provider, true)
             // cy.uiLogin(provider)
             dashPage.calendarShouldBeVisible()
-            const day = Cypress.env('appointmentDay')
-            dashPage.selectDay(day)
+            const date = Cypress.env('appointmentDate')
+            dashPage.selectDay(date)
             dashPage.appointmentShouldBe(custumer, appointment.hour)
         })
     })
