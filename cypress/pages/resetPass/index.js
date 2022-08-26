@@ -9,6 +9,8 @@ class ResetPassPage{
 
     go(token){
         cy.visit('/reset-password?token=' + token)
+        cy.contains(el.title, 'Resetar senha')
+            .should('be.visible')
     }
 
     form(newPass, confirmPass){

@@ -9,6 +9,8 @@ class ForgotPassPage{
 
     go(){
         cy.visit('/forgot-password')
+        cy.contains(el.title, 'Recuperar senha')
+            .should('be.visible')
     }
 
     form(email){

@@ -11,7 +11,8 @@ class loginPage {
 
     go(){
         cy.visit('/')
-
+        cy.contains(el.title, 'Faça seu login')
+            .should('be.visible')
     }
 
     form(user){

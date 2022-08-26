@@ -43,14 +43,14 @@ Cypress.Commands.add('postUser', function(user) {
         console.log(result)
     })
 
-    cy.request('POST', 'http://localhost:3333/users', user)
+    cy.request('POST', 'https://samuraibs-api-fernanda.herokuapp.com/users', user)
     .then(function(response) {
         expect(response.status).eq(200)
     })
 })
 
 Cypress.Commands.add('recoveryPass', function(email){
-    cy.request('POST', 'http://localhost:3333/password/forgot', {email:email}).then(function(response) {
+    cy.request('POST', 'https://samuraibs-api-fernanda.herokuapp.com/password/forgot', {email:email}).then(function(response) {
         expect(response.status).eq(204)
 
         cy.task('findToken', email)
@@ -64,7 +64,7 @@ Cypress.Commands.add('recoveryPass', function(email){
 Cypress.Commands.add('setProviderId', function(providerEmail) {
     cy.request({
         method:'GET',
-        url: 'http://localhost:3333/providers',
+        url: 'https://samuraibs-api-fernanda.herokuapp.com/providers',
         headers: {
             authorization: 'Bearer ' + Cypress.env('apiToken')
         }
@@ -96,11 +96,13 @@ Cypress.Commands.add('createAppointment', function(hour) {
         provider_id: Cypress.env('providerId'),
         date: date,
     }
+    
+    cy.log(payload)
 
     cy.request(
         {
             method:'POST', 
-            url:'http://localhost:3333/appointments', 
+            url:'https://samuraibs-api-fernanda.herokuapp.com/appointments', 
             body: payload,
             headers: {
                 authorization: 'Bearer ' + Cypress.env('apiToken')
@@ -118,7 +120,7 @@ Cypress.Commands.add('apiLogin',function(user, setLStorage = false){
         password: user.password
     }
 
-    cy.request({method:'POST', url:'http://localhost:3333/sessions', body: payload}).then(function(response){
+    cy.request({method:'POST', url:'https://samuraibs-api-fernanda.herokuapp.com/sessions', body: payload}).then(function(response){
         expect(response.status).to.eq(200)
         // console.log(response.body.token)
         Cypress.env('apiToken',response.body.token)

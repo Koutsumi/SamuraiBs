@@ -3,10 +3,11 @@ const { Pool } = require("pg");
 
 module.exports = defineConfig({
   e2e: {
-    baseUrl:'http://localhost:3000/',
-    apiServer: 'http://localhost:3333',
+    baseUrl:'https://samuraibs-web-fernanda.herokuapp.com',
+    apiServer: 'https://samuraibs-api-fernanda.herokuapp.com',
     viewportWidth: 1440,
     viewportHeight: 900,
+    defaultCommandTimeout: 30000,
     
     setupNodeEvents(on, config) {
       // implement node event listeners here
